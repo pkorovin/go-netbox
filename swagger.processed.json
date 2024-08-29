@@ -70427,7 +70427,7 @@
         },
         "family": {
           "title": "Family",
-          "type": "integer",
+          "type": "object",
           "readOnly": true
         },
         "address": {
@@ -71069,7 +71069,7 @@
         },
         "device": {
           "title": "Device",
-          "type": "integer"
+          "type": "object"
         },
         "module_bay": {
           "$ref": "#/definitions/ModuleNestedModuleBay"
@@ -77681,8 +77681,7 @@
     "WritableModuleBay": {
       "required": [
         "device",
-        "name",
-        "installed_module"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -77711,10 +77710,6 @@
           "type": "string",
           "maxLength": 64,
           "minLength": 1
-        },
-        "installed_module": {
-          "title": "Installed module",
-          "type": "integer"
         },
         "label": {
           "title": "Label",
@@ -84694,7 +84689,6 @@
     },
     "CustomField": {
       "required": [
-        "content_types",
         "type",
         "name"
       ],
@@ -84721,7 +84715,16 @@
           "items": {
             "type": "string"
           },
-          "uniqueItems": true
+          "uniqueItems": true,
+          "x-omitempty": true
+        },
+        "object_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "x-omitempty": true
         },
         "type": {
           "title": "Type",
@@ -84921,7 +84924,6 @@
     },
     "WritableCustomField": {
       "required": [
-        "content_types",
         "name"
       ],
       "type": "object",
@@ -84947,7 +84949,16 @@
           "items": {
             "type": "string"
           },
-          "uniqueItems": true
+          "uniqueItems": true,
+          "x-omitempty": true
+        },
+        "object_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "x-omitempty": true
         },
         "type": {
           "title": "Type",
@@ -89561,7 +89572,6 @@
     },
     "ContactAssignment": {
       "required": [
-        "content_type",
         "object_id",
         "contact"
       ],
@@ -89585,6 +89595,10 @@
         },
         "content_type": {
           "title": "Content type",
+          "type": "string"
+        },
+        "object_type": {
+          "title": "Object type",
           "type": "string"
         },
         "object_id": {
@@ -89649,7 +89663,6 @@
     },
     "WritableContactAssignment": {
       "required": [
-        "content_type",
         "object_id",
         "contact",
         "role"
@@ -89674,6 +89687,10 @@
         },
         "content_type": {
           "title": "Content type",
+          "type": "string"
+        },
+        "object_type": {
+          "title": "Object type",
           "type": "string"
         },
         "object_id": {
@@ -92894,7 +92911,6 @@
       "required": [
         "action_object_type",
         "action_type",
-        "content_types",
         "name"
       ],
       "type": "object",
@@ -92918,7 +92934,16 @@
           "items": {
             "type": "string"
           },
-          "uniqueItems": true
+          "uniqueItems": true,
+          "x-omitempty": true
+        },
+        "object_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "x-omitempty": true
         },
         "name": {
           "title": "Name",
@@ -93038,7 +93063,6 @@
       "description": "Adds support for custom fields and tags.",
       "required": [
         "action_object_type",
-        "content_types",
         "name"
       ],
       "properties": {
@@ -93046,7 +93070,15 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "x-omitempty": true
+        },
+        "object_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-omitempty": true
         },
         "name": {
           "type": "string",
