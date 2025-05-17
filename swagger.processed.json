@@ -29535,10 +29535,7 @@
               "additionalProperties": true
             }
           }
-        },
-        "tags": [
-          "dcim"
-        ]
+        }
       },
       "post": {
         "operationId": "dcim_rack_types_create",
@@ -52230,10 +52227,7 @@
           "201": {
             "description": "",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/VLAN"
-              }
+              "$ref": "#/definitions/VLAN"
             }
           },
           "default": {
@@ -75068,21 +75062,45 @@
         },
         "type": {
           "title": "Type",
-          "type": "string",
-          "enum": [
-            "vpws",
-            "vpls",
-            "vxlan",
-            "vxlan-evpn",
-            "mpls-evpn",
-            "pbb-evpn",
-            "epl",
-            "evpl",
-            "ep-lan",
-            "evp-lan",
-            "ep-tree",
-            "evp-tree"
-          ]
+          "type": "object",
+          "properties":{
+            "label":{
+              "enum":[
+                "VPWS",
+                "VPLS",
+                "VXLAN",
+                "VXLAN-EVPN",
+                "MPLS EVPN",
+                "PBB EVPN",
+                "EVPN VPWS",
+                "EPL",
+                "EVPL",
+                "Ethernet Private LAN",
+                "Ethernet Virtual Private LAN",
+                "Ethernet Private Tree",
+                "Ethernet Virtual Private Tree"
+              ],
+              "type":"string"
+            },
+            "value":{
+              "enum":[
+                "vpws",
+                "vpls",
+                "vxlan",
+                "vxlan-evpn",
+                "mpls-evpn",
+                "pbb-evpn",
+                "evpn-vpws",
+                "epl",
+                "evpl",
+                "ep-lan",
+                "evp-lan",
+                "ep-tree",
+                "evp-tree"
+              ],
+              "type":"string"
+            }
+          }
         }
       }
     },
@@ -77416,6 +77434,11 @@
           "type": "string",
           "maxLength": 200
         },
+        "facility": {
+          "title": "Facility",
+          "type": "string",
+          "maxLength": 50
+        },
         "tags": {
           "type": "array",
           "items": {
@@ -77526,6 +77549,11 @@
           "title": "Description",
           "type": "string",
           "maxLength": 200
+        },
+        "facility": {
+          "title": "Facility",
+          "type": "string",
+          "maxLength": 50
         },
         "tags": {
           "type": "array",
@@ -82121,7 +82149,6 @@
             }
           }
         }
-
       }
     },
     "WritableRack": {
@@ -90876,6 +90903,11 @@
           "type": "string",
           "maxLength": 150,
           "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 200
         },
         "user_count": {
           "title": "User count",
