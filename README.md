@@ -1,7 +1,7 @@
 go-netbox
 =========
 
-[![GoDoc](http://godoc.org/github.com/fbreckle/go-netbox?status.svg)](http://godoc.org/github.com/fbreckle/go-netbox) [![Build Status](https://github.com/fbreckle/go-netbox/workflows/main/badge.svg?branch=master)](https://github.com/fbreckle/go-netbox/actions) [![Report Card](https://goreportcard.com/badge/github.com/fbreckle/go-netbox)](https://goreportcard.com/report/github.com/fbreckle/go-netbox)
+[![GoDoc](http://godoc.org/github.com/pkorovin/go-netbox?status.svg)](http://godoc.org/github.com/pkorovin/go-netbox) [![Build Status](https://github.com/pkorovin/go-netbox/workflows/main/badge.svg?branch=master)](https://github.com/pkorovin/go-netbox/actions) [![Report Card](https://goreportcard.com/badge/github.com/pkorovin/go-netbox)](https://goreportcard.com/report/github.com/pkorovin/go-netbox)
 
 Package `netbox` provides an API 2.0 client for [netbox-community's NetBox](https://github.com/netbox-community/netbox)
 IPAM and DCIM service.
@@ -44,13 +44,13 @@ tbd. Meanwhile, look at branches and tags.
 Using the client
 ================
 
-The `github.com/fbreckle/go-netbox/netbox` package has some convenience functions for creating clients with the most common
+The `github.com/pkorovin/go-netbox/netbox` package has some convenience functions for creating clients with the most common
 configurations you are likely to need while connecting to NetBox. `NewNetboxAt` allows you to specify a hostname
 (including port, if you need it), and `NewNetboxWithAPIKey` allows you to specify both a hostname:port and API token.
 
 ```golang
 import (
-    "github.com/fbreckle/go-netbox/netbox"
+    "github.com/pkorovin/go-netbox/netbox"
 )
 ...
     c := netbox.NewNetboxAt("your.netbox.host:8000")
@@ -74,8 +74,8 @@ import (
 	"os"
 
 	httptransport "github.com/go-openapi/runtime/client"
-	"github.com/fbreckle/go-netbox/netbox/client"
-	"github.com/fbreckle/go-netbox/netbox/client/dcim"
+	"github.com/pkorovin/go-netbox/netbox/client"
+	"github.com/pkorovin/go-netbox/netbox/client/dcim"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -110,7 +110,7 @@ Go Module support
 
 Go 1.13+
 
-`go get github.com/fbreckle/go-netbox`
+`go get github.com/pkorovin/go-netbox`
 
 
 More complex client configuration
