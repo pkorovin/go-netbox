@@ -51,6 +51,9 @@ type WritableService struct {
 	// Max Length: 200
 	Description string `json:"description,omitempty"`
 
+	// Device
+	Device *int64 `json:"device,omitempty"`
+
 	// Display
 	// Read Only: true
 	Display string `json:"display,omitempty"`
@@ -75,13 +78,10 @@ type WritableService struct {
 	Name *string `json:"name"`
 
 	// Parent object id
-	// Required: true
-	// Minimum: 0
-	ParentObjectID *int64 `json:"parent_object_id"`
+	ParentObjectID *int64 `json:"parent_object_id,omitempty"`
 
 	// Parent object type
-	// Required: true
-	ParentObjectType *string `json:"parent_object_type"`
+	ParentObjectType *string `json:"parent_object_type,omitempty"`
 
 	// ports
 	// Required: true
@@ -99,6 +99,9 @@ type WritableService struct {
 	// Read Only: true
 	// Format: uri
 	URL strfmt.URI `json:"url,omitempty"`
+
+	// Virtual machine
+	VirtualMachine *int64 `json:"virtual_machine,omitempty"`
 }
 
 // Validate validates this writable service
@@ -122,14 +125,6 @@ func (m *WritableService) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateParentObjectID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateParentObjectType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -214,28 +209,6 @@ func (m *WritableService) validateName(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MaxLength("name", "body", *m.Name, 100); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WritableService) validateParentObjectID(formats strfmt.Registry) error {
-
-	if err := validate.Required("parent_object_id", "body", m.ParentObjectID); err != nil {
-		return err
-	}
-
-	if err := validate.MinimumInt("parent_object_id", "body", *m.ParentObjectID, 0, false); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WritableService) validateParentObjectType(formats strfmt.Registry) error {
-
-	if err := validate.Required("parent_object_type", "body", m.ParentObjectType); err != nil {
 		return err
 	}
 

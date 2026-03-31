@@ -77,15 +77,12 @@ type Service struct {
 	// Min Length: 1
 	Name *string `json:"name"`
 
-	// parent
-	// Read Only: true
-	Parent interface{} `json:"parent,omitempty"`
-
 	// Parent object id
-	// Minimum: 0
+	// Read Only: true
 	ParentObjectID *int64 `json:"parent_object_id,omitempty"`
 
 	// Parent object type
+	// Read Only: true
 	ParentObjectType string `json:"parent_object_type,omitempty"`
 
 	// ports
@@ -132,10 +129,6 @@ func (m *Service) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateParentObjectID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -267,18 +260,6 @@ func (m *Service) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Service) validateParentObjectID(formats strfmt.Registry) error {
-	if swag.IsZero(m.ParentObjectID) { // not required
-		return nil
-	}
-
-	if err := validate.MinimumInt("parent_object_id", "body", *m.ParentObjectID, 0, false); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Service) validatePorts(formats strfmt.Registry) error {
 
 	if err := validate.Required("ports", "body", m.Ports); err != nil {
@@ -404,6 +385,14 @@ func (m *Service) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateParentObjectID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateParentObjectType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateProtocol(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -502,6 +491,24 @@ func (m *Service) contextValidateIpaddresses(ctx context.Context, formats strfmt
 func (m *Service) contextValidateLastUpdated(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "last_updated", "body", m.LastUpdated); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Service) contextValidateParentObjectID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "parent_object_id", "body", m.ParentObjectID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Service) contextValidateParentObjectType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "parent_object_type", "body", string(m.ParentObjectType)); err != nil {
 		return err
 	}
 
