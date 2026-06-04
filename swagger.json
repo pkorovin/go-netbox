@@ -36930,6 +36930,13 @@
             "type": "string"
           },
           {
+            "name": "related_object_type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "content_type_id",
             "in": "query",
             "description": "",
@@ -64743,6 +64750,20 @@
             "type": "string"
           },
           {
+            "name": "virtual_machine_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "virtual_machine",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "id__n",
             "in": "query",
             "description": "",
@@ -85893,7 +85914,7 @@
         "validation_minimum": {
           "title": "Minimum value",
           "description": "Minimum allowed value (for numeric fields)",
-          "type": "integer",
+          "type": "number",
           "maximum": 2147483647,
           "minimum": -2147483648,
           "x-nullable": true
@@ -85901,7 +85922,7 @@
         "validation_maximum": {
           "title": "Maximum value",
           "description": "Maximum allowed value (for numeric fields)",
-          "type": "integer",
+          "type": "number",
           "maximum": 2147483647,
           "minimum": -2147483648,
           "x-nullable": true
@@ -86078,7 +86099,7 @@
         "validation_minimum": {
           "title": "Minimum value",
           "description": "Minimum allowed value (for numeric fields)",
-          "type": "integer",
+          "type": "number",
           "maximum": 2147483647,
           "minimum": -2147483648,
           "x-nullable": true
@@ -86086,7 +86107,7 @@
         "validation_maximum": {
           "title": "Maximum value",
           "description": "Maximum allowed value (for numeric fields)",
-          "type": "integer",
+          "type": "number",
           "maximum": 2147483647,
           "minimum": -2147483648,
           "x-nullable": true

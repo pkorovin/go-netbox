@@ -36447,6 +36447,13 @@
             "type": "string"
           },
           {
+            "name": "related_object_type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "content_type_id",
             "in": "query",
             "description": "",
@@ -63676,6 +63683,20 @@
             "type": "string"
           },
           {
+            "name": "virtual_machine_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "virtual_machine",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "id__n",
             "in": "query",
             "description": "",
@@ -68252,6 +68273,50 @@
             "description": "",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "tunnel_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "interface_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "outside_ip_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "vminterface_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           },
           {
             "name": "ordering",
@@ -75777,6 +75842,11 @@
           "readOnly": true,
           "x-nullable": true
         },
+        "primary_mac_address": {
+          "title": "Primary MAC Address",
+          "$ref": "#/definitions/BriefMACAddress",
+          "x-nullable": true
+        },
         "speed": {
           "title": "Speed (Kbps)",
           "type": "integer",
@@ -76681,6 +76751,12 @@
           "title": "MAC Address",
           "type": "string",
           "x-nullable": true
+        },
+        "primary_mac_address": {
+          "title": "Primary MAC Address",
+          "type": "integer",
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "speed": {
           "title": "Speed (Kbps)",
@@ -85357,6 +85433,104 @@
             }
           }
         },
+        "related_object_type": {
+          "title": "Related object type",
+          "type": "string",
+          "enum": [
+            "circuits.circuit",
+            "circuits.circuittermination",
+            "circuits.virtualcircuit",
+            "circuits.virtualcircuittermination",
+            "core.datasource",
+            "core.job",
+            "core.objectchange",
+            "dcim.cable",
+            "dcim.cablepath",
+            "dcim.cabletermination",
+            "dcim.consoleport",
+            "dcim.consoleporttemplate",
+            "dcim.consoleserverport",
+            "dcim.consoleserverporttemplate",
+            "dcim.device",
+            "dcim.devicebay",
+            "dcim.devicebaytemplate",
+            "dcim.devicerole",
+            "dcim.devicetype",
+            "dcim.frontport",
+            "dcim.frontporttemplate",
+            "dcim.interface",
+            "dcim.interfacetemplate",
+            "dcim.inventoryitem",
+            "dcim.inventoryitemrole",
+            "dcim.inventoryitemtemplate",
+            "dcim.location",
+            "dcim.manufacturer",
+            "dcim.module",
+            "dcim.modulebay",
+            "dcim.modulebaytemplate",
+            "dcim.moduletype",
+            "dcim.platform",
+            "dcim.powerfeed",
+            "dcim.poweroutlet",
+            "dcim.poweroutlettemplate",
+            "dcim.powerpanel",
+            "dcim.powerport",
+            "dcim.powerporttemplate",
+            "dcim.rack",
+            "dcim.rackreservation",
+            "dcim.rackrole",
+            "dcim.rearport",
+            "dcim.rearporttemplate",
+            "dcim.region",
+            "dcim.site",
+            "dcim.sitegroup",
+            "dcim.virtualchassis",
+            "extras.configcontext",
+            "extras.configrevision",
+            "extras.customfield",
+            "extras.customlink",
+            "extras.exporttemplate",
+            "extras.imageattachment",
+            "extras.jobresult",
+            "extras.journalentry",
+            "extras.report",
+            "extras.script",
+            "extras.tag",
+            "extras.taggeditem",
+            "extras.webhook",
+            "ipam.aggregate",
+            "ipam.ASN",
+            "ipam.FHRPgroup",
+            "ipam.FHRPgroupassignment",
+            "ipam.IPaddress",
+            "ipam.IPrange",
+            "ipam.L2VPN",
+            "ipam.L2VPNtermination",
+            "ipam.prefix",
+            "ipam.RIR",
+            "ipam.role",
+            "ipam.routetarget",
+            "ipam.service",
+            "ipam.servicetemplate",
+            "ipam.VLAN",
+            "ipam.VLANgroup",
+            "ipam.VRF",
+            "tenancy.contact",
+            "tenancy.contactassignment",
+            "tenancy.contactgroup",
+            "tenancy.contactrole",
+            "tenancy.tenant",
+            "tenancy.tenantgroup",
+            "virtualization.cluster",
+            "virtualization.clustergroup",
+            "virtualization.clustertype",
+            "virtualization.interface",
+            "virtualization.virtualmachine",
+            "wireless.WirelessLAN",
+            "wireless.WirelessLANGroup",
+            "wireless.wirelesslink"
+          ]
+        },
         "object_type": {
           "title": "Object type",
           "type": "string"
@@ -85471,7 +85645,7 @@
         "validation_minimum": {
           "title": "Minimum value",
           "description": "Minimum allowed value (for numeric fields)",
-          "type": "integer",
+          "type": "number",
           "maximum": 2147483647,
           "minimum": -2147483648,
           "x-nullable": true
@@ -85479,7 +85653,7 @@
         "validation_maximum": {
           "title": "Maximum value",
           "description": "Maximum allowed value (for numeric fields)",
-          "type": "integer",
+          "type": "number",
           "maximum": 2147483647,
           "minimum": -2147483648,
           "x-nullable": true
@@ -85566,6 +85740,104 @@
             "multiobject"
           ]
         },
+        "related_object_type": {
+          "title": "Related object type",
+          "type": "string",
+          "enum": [
+            "circuits.circuit",
+            "circuits.circuittermination",
+            "circuits.virtualcircuit",
+            "circuits.virtualcircuittermination",
+            "core.datasource",
+            "core.job",
+            "core.objectchange",
+            "dcim.cable",
+            "dcim.cablepath",
+            "dcim.cabletermination",
+            "dcim.consoleport",
+            "dcim.consoleporttemplate",
+            "dcim.consoleserverport",
+            "dcim.consoleserverporttemplate",
+            "dcim.device",
+            "dcim.devicebay",
+            "dcim.devicebaytemplate",
+            "dcim.devicerole",
+            "dcim.devicetype",
+            "dcim.frontport",
+            "dcim.frontporttemplate",
+            "dcim.interface",
+            "dcim.interfacetemplate",
+            "dcim.inventoryitem",
+            "dcim.inventoryitemrole",
+            "dcim.inventoryitemtemplate",
+            "dcim.location",
+            "dcim.manufacturer",
+            "dcim.module",
+            "dcim.modulebay",
+            "dcim.modulebaytemplate",
+            "dcim.moduletype",
+            "dcim.platform",
+            "dcim.powerfeed",
+            "dcim.poweroutlet",
+            "dcim.poweroutlettemplate",
+            "dcim.powerpanel",
+            "dcim.powerport",
+            "dcim.powerporttemplate",
+            "dcim.rack",
+            "dcim.rackreservation",
+            "dcim.rackrole",
+            "dcim.rearport",
+            "dcim.rearporttemplate",
+            "dcim.region",
+            "dcim.site",
+            "dcim.sitegroup",
+            "dcim.virtualchassis",
+            "extras.configcontext",
+            "extras.configrevision",
+            "extras.customfield",
+            "extras.customlink",
+            "extras.exporttemplate",
+            "extras.imageattachment",
+            "extras.jobresult",
+            "extras.journalentry",
+            "extras.report",
+            "extras.script",
+            "extras.tag",
+            "extras.taggeditem",
+            "extras.webhook",
+            "ipam.aggregate",
+            "ipam.ASN",
+            "ipam.FHRPgroup",
+            "ipam.FHRPgroupassignment",
+            "ipam.IPaddress",
+            "ipam.IPrange",
+            "ipam.L2VPN",
+            "ipam.L2VPNtermination",
+            "ipam.prefix",
+            "ipam.RIR",
+            "ipam.role",
+            "ipam.routetarget",
+            "ipam.service",
+            "ipam.servicetemplate",
+            "ipam.VLAN",
+            "ipam.VLANgroup",
+            "ipam.VRF",
+            "tenancy.contact",
+            "tenancy.contactassignment",
+            "tenancy.contactgroup",
+            "tenancy.contactrole",
+            "tenancy.tenant",
+            "tenancy.tenantgroup",
+            "virtualization.cluster",
+            "virtualization.clustergroup",
+            "virtualization.clustertype",
+            "virtualization.interface",
+            "virtualization.virtualmachine",
+            "wireless.WirelessLAN",
+            "wireless.WirelessLANGroup",
+            "wireless.wirelesslink"
+          ]
+        },
         "object_type": {
           "title": "Object type",
           "type": "string"
@@ -85649,7 +85921,7 @@
         "validation_minimum": {
           "title": "Minimum value",
           "description": "Minimum allowed value (for numeric fields)",
-          "type": "integer",
+          "type": "number",
           "maximum": 2147483647,
           "minimum": -2147483648,
           "x-nullable": true
@@ -85657,7 +85929,7 @@
         "validation_maximum": {
           "title": "Maximum value",
           "description": "Maximum allowed value (for numeric fields)",
-          "type": "integer",
+          "type": "number",
           "maximum": 2147483647,
           "minimum": -2147483648,
           "x-nullable": true
@@ -91607,7 +91879,8 @@
           "title": "Expires",
           "type": "string",
           "format": "date-time",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "last_used": {
           "title": "Last used",
@@ -92274,6 +92547,11 @@
           "type": "string",
           "x-nullable": true
         },
+        "primary_mac_address": {
+          "title": "Primary MAC Address",
+          "$ref": "#/definitions/BriefMACAddress",
+          "x-nullable": true
+        },
         "description": {
           "title": "Description",
           "type": "string",
@@ -92417,6 +92695,12 @@
           "title": "MAC Address",
           "type": "string",
           "x-nullable": true
+        },
+        "primary_mac_address": {
+          "title": "Primary MAC Address",
+          "type": "integer",
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "description": {
           "title": "Description",
@@ -94929,3 +95213,4 @@
     }
   }
 }
+
